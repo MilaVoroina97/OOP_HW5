@@ -13,8 +13,24 @@ public class Model {
         this.phonebook = phonebook;
         this.file = file;
     }
+    public Model(ExportImportFile file){
+        this.file = file;
+        this.file.loadBook();
+    }
 
+    public Phonebook getPhonebookModel(){
+        return this.phonebook;
+    }
 
-    
-    
+    public ExportImportFile getFile(){
+        return this.file;
+    }
+
+    public void load(){
+        this.phonebook = file.loadBook();
+    }
+
+    public void save(){
+        file.saveBook(this.phonebook);
+    }
 }
