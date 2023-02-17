@@ -1,5 +1,7 @@
 package HW5.Spravochnik.Core.MVP;
 
+import java.util.Collection;
+
 import HW5.Spravochnik.Core.Exceptions.BadEmailException;
 import HW5.Spravochnik.Core.Infrastructure.Contact;
 import HW5.Spravochnik.Core.Infrastructure.Email;
@@ -28,12 +30,36 @@ public class Presenter {
 
         while(true){
             view.menu();
-            int command = view.getCommand();
+            int command = view.getUserCommand();
             switch(command){
                 case 0:
                     return;
                 case 1 :
+                    String[] addContactFields = view.addContactMenu();
+                    addContact(addContactFields);
+                    break;
+                case 2 :
+                    Collection<Contact> contacts = this.model.getPhonebookModel().getAllContacts().values();
+                    String[] changeContactFields = view.changeContactMenu(contacts);
+                    changeContact(changeContactFields);
+                    break;
+                case 3 :
+                    contacts = this.model.getPhonebookModel().getAllContacts().values();
+                    String deleteContactFields = view.deleteContactMenu(contacts);
+                    deleteContact(deleteContactFields);
+                    break;
+                case 4 :
+                    view.showAllContacts(this.model.getPhonebookModel().getAllContacts().values());
+                    break;
 
+                case 5:
+                    String search = view.searching();
+                    Contact contact = this.model.getPhonebookModel().findContact(search);
+                    view.showContact(contact);
+                    break;
+                default:
+                    view.invalidCommand();
+                
             }
         }
     }

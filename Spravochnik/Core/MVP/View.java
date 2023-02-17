@@ -7,13 +7,14 @@ import HW5.Spravochnik.Core.Infrastructure.Contact;
 public interface View {
 
     public void menu();
-    public int getCommand();
+    public int getUserCommand();
     public void invalidCommand();
-    public String[] addContact();
-    public String[] changeContact(Collection<Contact> contacts);
-    public String deleteContact(Collection<Contact> contacts);
+    public String[] addContactMenu();
+    public String[] changeContactMenu(Collection<Contact> contacts);
+    public String deleteContactMenu(Collection<Contact> contacts);
     public void showContact(Contact contact);
     public void showAllContacts(Collection<Contact> contacts);
+    public String searching(); 
 
     
 }
